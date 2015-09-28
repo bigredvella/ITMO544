@@ -28,5 +28,3 @@ if echo "$answer" | grep -iq "^y" ;then
 else
     clear
 fi
-
-//In order to make this shell script impersonal, 

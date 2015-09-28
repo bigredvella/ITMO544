@@ -1,0 +1,5 @@
+#!/bin/bash
+
+aws s3 cp IIT_Scarlet_Hawks.svg.png s3://mybucket/IITHawks —-acl public-read —grants Permission=read
+
+aws s3 cp SophieAndMe.jpg s3://mybucket2/Sophie —-acl public-read —grants Permission=read

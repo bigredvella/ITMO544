@@ -1,5 +1,17 @@
 #!/bin/bash
 
-aws s3 cp IIT_Scarlet_Hawks.svg.png s3://mybucket/IITHawks —-acl public-read —grants Permission=read
+aws s3 mb s3://bigredvella/
 
-aws s3 cp SophieAndMe.jpg s3://mybucket2/Sophie —-acl public-read —grants Permission=read
+aws s3 cp IIT_Scarlet_Hawks.svg.png s3://bigredvella/IIT_Scarlet_Hawks2 --acl public-read
+
+aws s3 mb s3://bigredvella2/
+
+aws s3 cp SophieAndMe.jpg s3://bigredvella2/Sophie --acl public-read
+
+echo -n "Do you want to check your bucket contents (y/n)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    aws s3 ls
+else
+    clear
+fi

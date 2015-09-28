@@ -1,12 +1,25 @@
 #!/bin/bash
+echo "What is the name for your S3 bucket?: "
+read $1
+aws s3 mb s3://$1/
 
-aws s3 mb s3://bigredvella/
+echo "What is the file name (somefile.filetype) you want to transfer to your S3 bucket? "
+read $3
+aws s3 cp $3 s3://$1/ --acl public-read
 
-aws s3 cp IIT_Scarlet_Hawks.svg.png s3://bigredvella/IIT_Scarlet_Hawks2 --acl public-read
+echo -n "Do you want to create an additional S3 bucket (y/n)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+    echo "What is the name for additional your S3 bucket?: "
+    read $2
+    aws s3 mb s3://$2/
 
-aws s3 mb s3://bigredvella2/
-
-aws s3 cp SophieAndMe.jpg s3://bigredvella2/Sophie --acl public-read
+    echo "What is the file name (somefile.filetype) you want to transfer to your S3 bucket? "
+    read $4
+    aws s3 cp $4 s3://$2/ --acl public-read
+else
+    exit
+fi
 
 echo -n "Do you want to check your bucket contents (y/n)? "
 read answer
@@ -15,3 +28,5 @@ if echo "$answer" | grep -iq "^y" ;then
 else
     clear
 fi
+
+//In order to make this shell script impersonal, 
